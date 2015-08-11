@@ -1,0 +1,116 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UsuarioDAOService WSDL service -->
+
+  <service name="UsuarioDAO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://model"/>
+      <parameter name="wsdlServiceElement" value="UsuarioDAOService"/>
+      <parameter name="schemaQualified" value="http://model"/>
+      <parameter name="wsdlServicePort" value="UsuarioDAO"/>
+      <parameter name="className" value="model.UsuarioDAOSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="UsuarioDAO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="inserirUsuario" qname="operNS:inserirUsuario" xmlns:operNS="http://model" returnQName="retNS:inserirUsuarioReturn" xmlns:retNS="http://model" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:usuario" xmlns:pns="http://model" type="tns:Usuario" xmlns:tns="http://model"/>
+      </operation>
+      <operation name="getNomeByID" qname="operNS:getNomeByID" xmlns:operNS="http://model" returnQName="retNS:getNomeByIDReturn" xmlns:retNS="http://model" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://model" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getListaUsuarios" qname="operNS:getListaUsuarios" xmlns:operNS="http://model" returnQName="retNS:getListaUsuariosReturn" xmlns:retNS="http://model" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://model" returnItemQName="tns:item" xmlns:tns="http://model" soapAction="" >
+      </operation>
+      <operation name="getUsuarioPorID" qname="operNS:getUsuarioPorID" xmlns:operNS="http://model" returnQName="retNS:getUsuarioPorIDReturn" xmlns:retNS="http://model" returnType="rtns:Usuario" xmlns:rtns="http://model" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://model" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getUsuarioPorID getListaUsuarios inserirUsuario getNomeByID"/>
+
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:Usuario"
+        type="java:model.Usuario"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>inserirUsuario"
+        type="java:model.InserirUsuario"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getNomeByID"
+        type="java:model.GetNomeByID"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getListaUsuariosResponse"
+        type="java:model.GetListaUsuariosResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://model"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getListaUsuarios"
+        type="java:model.GetListaUsuarios"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getUsuarioPorIDResponse"
+        type="java:model.GetUsuarioPorIDResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getUsuarioPorID"
+        type="java:model.GetUsuarioPorID"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>inserirUsuarioResponse"
+        type="java:model.InserirUsuarioResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://model"
+        qname="ns:>getNomeByIDResponse"
+        type="java:model.GetNomeByIDResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

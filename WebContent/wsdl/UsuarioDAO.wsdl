@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://model" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://model" xmlns:intf="http://model" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://model" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="inserirUsuario">
+    <complexType>
+     <sequence>
+      <element name="usuario" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Usuario">
+    <sequence>
+     <element name="id" type="xsd:int"/>
+     <element name="idade" type="xsd:int"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="inserirUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="inserirUsuarioReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNomeByID">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNomeByIDResponse">
+    <complexType>
+     <sequence>
+      <element name="getNomeByIDReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getListaUsuarios">
+    <complexType/>
+   </element>
+   <element name="getListaUsuariosResponse">
+    <complexType>
+     <sequence>
+      <element name="getListaUsuariosReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="getUsuarioPorID">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUsuarioPorIDResponse">
+    <complexType>
+     <sequence>
+      <element name="getUsuarioPorIDReturn" type="impl:Usuario"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="inserirUsuarioResponse">
+
+      <wsdl:part element="impl:inserirUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIDResponse">
+
+      <wsdl:part element="impl:getUsuarioPorIDResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUsuarioPorIDRequest">
+
+      <wsdl:part element="impl:getUsuarioPorID" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="inserirUsuarioRequest">
+
+      <wsdl:part element="impl:inserirUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNomeByIDRequest">
+
+      <wsdl:part element="impl:getNomeByID" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaUsuariosRequest">
+
+      <wsdl:part element="impl:getListaUsuarios" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getListaUsuariosResponse">
+
+      <wsdl:part element="impl:getListaUsuariosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNomeByIDResponse">
+
+      <wsdl:part element="impl:getNomeByIDResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UsuarioDAO">
+
+      <wsdl:operation name="inserirUsuario">
+
+         <wsdl:input message="impl:inserirUsuarioRequest" name="inserirUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:inserirUsuarioResponse" name="inserirUsuarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNomeByID">
+
+         <wsdl:input message="impl:getNomeByIDRequest" name="getNomeByIDRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNomeByIDResponse" name="getNomeByIDResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaUsuarios">
+
+         <wsdl:input message="impl:getListaUsuariosRequest" name="getListaUsuariosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getListaUsuariosResponse" name="getListaUsuariosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorID">
+
+         <wsdl:input message="impl:getUsuarioPorIDRequest" name="getUsuarioPorIDRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getUsuarioPorIDResponse" name="getUsuarioPorIDResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UsuarioDAOSoapBinding" type="impl:UsuarioDAO">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="inserirUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="inserirUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="inserirUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNomeByID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNomeByIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNomeByIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getListaUsuarios">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getListaUsuariosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getListaUsuariosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUsuarioPorID">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUsuarioPorIDRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUsuarioPorIDResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UsuarioDAOService">
+
+      <wsdl:port binding="impl:UsuarioDAOSoapBinding" name="UsuarioDAO">
+
+         <wsdlsoap:address location="http://localhost:8080/Primeiro_Web_Service/services/UsuarioDAO"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
